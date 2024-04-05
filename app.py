@@ -19,39 +19,38 @@ def finalizar_app():
     os.system("cls") # Limpando o CMD
     print("Finalizando programa...")
 
-def opcao_invalida():
-    print("Opção inválida\n")
-    input("Digite qualquer tecla para voltar ao menu principal")
-    main()
-
-def cadastrar_restaurante():
+def exibir_subtitulo(texto):
     os.system("cls")
-    print("""
+    print(f"""
 ------------------------------------------ 
-SABOR EXPRESS - CADASTRAR RESTAURANTES
+  SABOR EXPRESS - {texto}
 ------------------------------------------ 
     """)
-    nome_restaurante = input("Digite o nome do restaurante que deseja cadastrar: ")
-    restaurantes.append(nome_restaurante)
-    print(f"O resutarante {nome_restaurante} foi cadastrado com sucesso!")
+
+def voltar_ao_menu():
     input("\nDigite qualquer tecla para voltar ao menu principal")
     main()
 
+def opcao_invalida():
+    print("Opção inválida")
+    voltar_ao_menu()
+
+def cadastrar_restaurante():
+    exibir_subtitulo("CADASTRAR RESTAURANTES")
+    nome_restaurante = input("Digite o nome do restaurante que deseja cadastrar: ")
+    restaurantes.append(nome_restaurante)
+    print(f"O restaurante {nome_restaurante} foi cadastrado com sucesso!")
+    voltar_ao_menu()
+
 def listar_restaurantes():
-    os.system("cls")
-    print("""
------------------------------------------- 
-SABOR EXPRESS - LISTAR RESTAURANTES
------------------------------------------- 
-    """)
+    exibir_subtitulo("LISTAR RESTAURANTES")
     if(not restaurantes):
         print("Nenhum restaurante cadastrado no momento.")
     else:
         for restaurante in restaurantes:
             print(f".{restaurante}")
 
-    input("\nDigite qualquer tecla para voltar ao menu principal")
-    main()
+    voltar_ao_menu()
 
 def escolher_opcao():
     try:
