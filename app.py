@@ -4,9 +4,9 @@ restaurantes = []
 
 def exibir_nome_programa():
     print("""
---------------------- 
-SABOR EXPRESS
---------------------- 
+------------------------------------------
+              SABOR EXPRESS
+------------------------------------------
     """)
 
 def exibir_opcoes():
@@ -25,13 +25,32 @@ def opcao_invalida():
     main()
 
 def cadastrar_restaurante():
-    os.system('cls')
-    exibir_nome_programa()
-    print("Cadastro de restaurantes\n")
+    os.system("cls")
+    print("""
+------------------------------------------ 
+SABOR EXPRESS - CADASTRAR RESTAURANTES
+------------------------------------------ 
+    """)
     nome_restaurante = input("Digite o nome do restaurante que deseja cadastrar: ")
     restaurantes.append(nome_restaurante)
-    print(f"O resutarante {nome_restaurante} foi cadastrado com sucesso!\n")
-    input("Digite qualquer tecla para voltar ao menu principal")
+    print(f"O resutarante {nome_restaurante} foi cadastrado com sucesso!")
+    input("\nDigite qualquer tecla para voltar ao menu principal")
+    main()
+
+def listar_restaurantes():
+    os.system("cls")
+    print("""
+------------------------------------------ 
+SABOR EXPRESS - LISTAR RESTAURANTES
+------------------------------------------ 
+    """)
+    if(not restaurantes):
+        print("Nenhum restaurante cadastrado no momento.")
+    else:
+        for restaurante in restaurantes:
+            print(f".{restaurante}")
+
+    input("\nDigite qualquer tecla para voltar ao menu principal")
     main()
 
 def escolher_opcao():
@@ -42,7 +61,7 @@ def escolher_opcao():
             case 1:
                 cadastrar_restaurante()
             case 2:
-                print("Listar  Restaurante")
+                listar_restaurantes()
             case 3:
                 print("Ativar Restaurante")
             case 4:
