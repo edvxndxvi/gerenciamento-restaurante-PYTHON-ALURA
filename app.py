@@ -12,7 +12,7 @@ def exibir_nome_programa():
 def exibir_opcoes():
     print("1. Cadastrar Restaurante")
     print("2. Listar Restaurante")
-    print("3. Ativar Restaurante")
+    print("3. Alterar estado de Restaurante")
     print("4. Sair\n")
 
 def finalizar_app():
@@ -21,10 +21,11 @@ def finalizar_app():
 
 def exibir_subtitulo(texto):
     os.system("cls")
+    linha = '-' * (len(texto) + 20)
     print(f"""
------------------------------------------------------
+{linha}
   SABOR EXPRESS - {texto}
------------------------------------------------------
+{linha}
     """)
 
 def voltar_ao_menu():
@@ -49,16 +50,20 @@ def listar_restaurantes():
     if(not restaurantes):
         print("Nenhum restaurante cadastrado no momento.")
     else:
+        indice_tabela = f"Nome do Restaurante".ljust(19) + "| Categoria".ljust(15) + "| Status"
+        linha = "-" * (len(indice_tabela) + 4)
+        print(indice_tabela)
+        print(linha)
         for restaurante in restaurantes:
             nome_restaurante = restaurante["nome"]
             categoria_restaurante = restaurante["categoria"]
-            ativo_restaurante = restaurante["ativo"]
-            print(f" - {nome_restaurante} | {categoria_restaurante} | {ativo_restaurante}")
+            ativo_restaurante = "Ativo" if restaurante["ativo"] else "Desativado"
+            print(f" - {nome_restaurante.ljust(17)} | {categoria_restaurante.ljust(15)} | {ativo_restaurante}")
 
     voltar_ao_menu()
 
-def alternar_estado():
-    exibir_subtitulo("ALTERANDO ESTADO DE RESTAURANTES")
+def alterar_estado():
+    exibir_subtitulo("ALTERANDO ESTADO DE RESTAURANTE")
     nome_restaurante = input("Digite o nome do restaurante que deseja alterar o estado: ")
     restaurante_encontrado = False
     for restaurante in restaurantes:
@@ -83,7 +88,7 @@ def escolher_opcao():
             case 2:
                 listar_restaurantes()
             case 3:
-                alternar_estado()
+                alterar_estado()
             case 4:
                 finalizar_app()
             case _:
