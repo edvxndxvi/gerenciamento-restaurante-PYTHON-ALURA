@@ -1,6 +1,7 @@
 import os #Importando biblioteca Python
 
-restaurantes = []
+restaurantes = [{"nome":"MCDonalds", "categoria":"Hamburgueria","ativo":False}, 
+                {"nome":"Starbucks", "categoria":"Café","ativo":True}]
 
 def exibir_nome_programa():
     print("""
@@ -48,7 +49,10 @@ def listar_restaurantes():
         print("Nenhum restaurante cadastrado no momento.")
     else:
         for restaurante in restaurantes:
-            print(f".{restaurante}")
+            nome_restaurante = restaurante["nome"]
+            categoria_restaurante = restaurante["categoria"]
+            ativo_restaurante = restaurante["ativo"]
+            print(f" - {nome_restaurante} | {categoria_restaurante} | {ativo_restaurante}")
 
     voltar_ao_menu()
 
