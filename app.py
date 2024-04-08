@@ -22,9 +22,9 @@ def finalizar_app():
 def exibir_subtitulo(texto):
     os.system("cls")
     print(f"""
------------------------------------------- 
+-----------------------------------------------------
   SABOR EXPRESS - {texto}
------------------------------------------- 
+-----------------------------------------------------
     """)
 
 def voltar_ao_menu():
@@ -57,6 +57,22 @@ def listar_restaurantes():
 
     voltar_ao_menu()
 
+def alternar_estado():
+    exibir_subtitulo("ALTERANDO ESTADO DE RESTAURANTES")
+    nome_restaurante = input("Digite o nome do restaurante que deseja alterar o estado: ")
+    restaurante_encontrado = False
+    for restaurante in restaurantes:
+        if nome_restaurante == restaurante["nome"]:
+            restaurante_encontrado = True
+            restaurante["ativo"] = not restaurante["ativo"]
+            mensagem = f"O restaurante {nome_restaurante} foi ativado com sucesso!" if restaurante["ativo"] else f"O restaurante {nome_restaurante} foi desativado com sucesso!"
+            print(mensagem)
+
+    if not restaurante_encontrado:
+        print("O restaurante não foi encontrado. Verifique se está digitando corretamente o nome do restaurante")
+
+    voltar_ao_menu()
+
 def escolher_opcao():
     try:
         opcao_escolhida = int(input("Escolha uma opção: "))
@@ -67,7 +83,7 @@ def escolher_opcao():
             case 2:
                 listar_restaurantes()
             case 3:
-                print("Ativar Restaurante")
+                alternar_estado()
             case 4:
                 finalizar_app()
             case _:
